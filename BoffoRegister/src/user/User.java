@@ -42,8 +42,9 @@ public class User extends BoffoDbObject{
     public void setPass(String _userPass){
             this.pass = _userPass;
         }
-    public void checkUserName(String userName) {
+    public void checkUser(String userName, String pass) {
         User.loadByName(userName, "UserTable");
+        User.loadByName(pass, "UserTable");
     }
     @Override
     public String toString() {
