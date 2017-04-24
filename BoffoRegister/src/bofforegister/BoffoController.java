@@ -20,11 +20,11 @@ import events.BoffoFireObject;
 import gui.BoffoRegisterGUI;
 import javafx.stage.Stage;
 import events.BoffoListenerInterface;
-import events.BoffoMessenger;
 import inventory.Inventory;
 import printer.Printer;
 import transaction.Transaction;
 import user.User;
+import events.*;
 
 public class BoffoController extends BoffoFireObject implements BoffoListenerInterface {
 
@@ -55,13 +55,19 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
         * within a given range.
         * Using literal ints until the event system is nailed down.
         */
-        if(_event.getEventCode() == BoffoMessenger.USER_NAME) {
+        if(_event.getEventCode() == EventCodes.LOGIN_REQUEST) {
             // Create new user object with data from login panel.
             User user = new User();
             user.getUsername();
             user.getPass();
         }
-        else if (_event.getMessage().getCode() == 1) {
+        else if (_event.getEventCode() == EventCodes.LOGIN_ACCEPTED) {
+            //
+        }
+        else if (_event.getEventCode() == EventCodes.LOGOUT_REQUEST) {
+            //
+        }
+        else if (_event.getEventCode() == EventCodes.PRINT_RECEIPT) {
             printReceipt();
         }
         else {
@@ -73,21 +79,21 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
 
     private void changePanel(BoffoEvent _event) {
         //Think I want to change the parameter to changePanel(BoffoBaseModule module)
-        switch(_event.getMessage().getCode()) {
+        switch(_event.getEventCode()) {
 
-            case 2:
+            case EventCodes.LOGIN_PANEL:
                 // log out the current user and change to the login panel.
                 this.gui.loadLoginPanel();
 
                 break;
 
-            case 3:
+            case EventCodes.MAIN_PANEL:
                 // Change to the main GUI panel.
                 this.gui.loadMainPanel();
 
                 break;
 
-            case 4:
+            case EventCodes.ADMIN_PANEL:
                 // If there is no Administration object, create it.
                 if(admin == null) {
                     admin = new Administration();
@@ -97,11 +103,11 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
 
                 break;
 
-            case 5:
+            case EventCodes.USER_PANEL:
                 // Change to the User GUI panel.
                 break;
 
-            case 6:
+            case EventCodes.INVENTORY_PANEL:
                 // If there is no Inventory object, create one.
                 if(inventory == null) {
                     inventory = new Inventory();
@@ -111,7 +117,7 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
 
                 break;
 
-            case 7:
+            case EventCodes.TRANSACTION_PANEL:
                 // Change to the Transaction GUI panel.
                 if(transaction == null) {
                     transaction = new Transaction();
