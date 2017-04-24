@@ -55,11 +55,17 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
         * within a given range.
         * Using literal ints until the event system is nailed down.
         */
+        if(_event.getEventCode() == BoffoMessenger.USER_NAME) {
+            // Create new user object with data from login panel.
+            User user = new User();
+
+            user.getPass();
+        }
         if(_event.getEventCode() == EventCodes.LOGIN_REQUEST) {
-           // User.loginUser(_event); 
+           // User.loginUser(_event);
         }
         else if (_event.getEventCode() == EventCodes.LOGIN_ACCEPTED) {
-            CURRENT_USER = new User(/* 
+            CURRENT_USER = new User(/*
             _event.getMessageValue(MessageCodes.USER_NAME),
             _event.getMessageValue(MessageCodes.USER_PASS)*/);
             // this.addListener(CURRENT_USER);
@@ -69,9 +75,10 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
             // TODO Call a static logout class?
             this.fireEvent(new BoffoEvent(this, EventCodes.LOGOUT_REQUEST, null));
             this.removeAllListeners();
+
             // TODO Null out all modules?
             CURRENT_USER = null;
-            this.gui.loadLoginPanel(); 
+            this.gui.loadLoginPanel();
         }
         else if (_event.getEventCode() == EventCodes.PRINT_RECEIPT) {
             printReceipt();
