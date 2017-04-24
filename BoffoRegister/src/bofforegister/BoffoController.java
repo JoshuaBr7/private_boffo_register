@@ -72,9 +72,11 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
             this.gui.loadMainPanel();
         }
         else if (_event.getEventCode() == EventCodes.LOGOUT_REQUEST) {
-            // Call a static logout class?
+            // TODO Call a static logout class?
             this.fireEvent(new BoffoEvent(this, EventCodes.LOGOUT_REQUEST, null));
             this.removeAllListeners();
+
+            // TODO Null out all modules?
             CURRENT_USER = null;
             this.gui.loadLoginPanel();
         }
@@ -101,10 +103,6 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
                 if(admin == null) {
                     admin = new Administration();
                 }
-                // Set as listener.
-                /*if(!this.isListener(admin)) {
-                    this.addListener(admin);
-                }*/
                 // Change to the admin GUI panel.
                 this.gui.loadAdminPanel();
                 break;
@@ -119,10 +117,6 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
                 if(inventory == null) {
                     inventory = new Inventory();
                 }
-                // Set as listener.
-                /*if(!this.isListener(inventory)) {
-                    this.addListener(inventory);
-                }*/
                 // Change to the Inventory GUI panel.
                 this.gui.loadInventoryPanel();
                 break;
@@ -131,10 +125,6 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
                 // Change to the Transaction GUI panel.
                 /*if(transaction == null) {
                     transaction = new Transaction();
-                }*/
-                // Set as listener.
-                /*if(!this.isListener(transaction)) {
-                    this.addListener(transaction);
                 }*/
                 // Change to the Transaction GUI panel.
                 this.gui.loadTransactionPanel();
