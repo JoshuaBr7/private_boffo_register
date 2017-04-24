@@ -1,6 +1,6 @@
 package events;
 
-//Maclean Frazier
+// Maclean Frazier
 
 import database.BoffoDbObject;
 import java.util.ArrayList;
@@ -13,29 +13,26 @@ public class BoffoFireObject extends BoffoDbObject {
     public BoffoFireObject() {
     }
     //Generic add and remove
-    public synchronized void addListener(BoffoListenerInterface listener) {
-        listeners.add(listener);
+    public synchronized void addListener(BoffoListenerInterface _listener) {
+        if(this.listeners.contains(_listener))
+        this.listeners.add(_listener);
     }
 
-    public synchronized void removeListener(BoffoListenerInterface listener) {
-        listeners.remove(listener);
+    public synchronized void removeListener(BoffoListenerInterface _listener) {
+        this.listeners.remove(_listener);
     }
     
     public synchronized void removeAllListeners() {
         listeners.clear();
     }
     
-    public synchronized void isListener(BoffoListenerInterface listener) {
-        listeners.contains(listener);
-    }
-    
-    protected synchronized void fireEvent(BoffoEvent event) {
+    protected synchronized void fireEvent(BoffoEvent _event) {
         // Clone the active listeners.
         Object[] tempList = this.listeners.toArray();
         //Cycle through listeners and fire events
         for (Object tempList1 : tempList) {
             BoffoListenerInterface tempObj = (BoffoListenerInterface) tempList1;
-            tempObj.messageReceived(event);
+            tempObj.messageReceived(_event);
         }
     }
 }
