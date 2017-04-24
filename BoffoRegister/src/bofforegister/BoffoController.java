@@ -58,7 +58,7 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
         if(_event.getEventCode() == BoffoMessenger.USER_NAME) {
             // Create new user object with data from login panel.
             User user = new User();
-            user.getUsername();
+            
             user.getPass();
         }
         else if (_event.getMessage().getCode() == 1) {

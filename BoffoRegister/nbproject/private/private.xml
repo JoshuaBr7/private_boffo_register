@@ -18,8 +18,10 @@
             <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/bofforegister/BoffoRegister.java</file>
             <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/events/BoffoMessenger.java</file>
             <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/events/BoffoEvent.java</file>
+            <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/user/User.java</file>
             <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/bofforegister/BoffoController.java</file>
             <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/events/BoffoListenerInterface.java</file>
+            <file>file:/C:/ClassRepo/private_boffo_register/BoffoRegister/src/database/BoffoDbObject.java</file>
         </group>
     </open-files>
 </project-private>
