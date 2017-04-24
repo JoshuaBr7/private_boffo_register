@@ -8,6 +8,8 @@ public class MessageCodes {
     // Login data.
     public static final int USER_NAME = 0;
     public static final int USER_PASS = 1;
-    public static final int ACCEPTED = 2;
+    public static final int PROD_SKU = 2;
+    public static final int PROD_NAME = 2;
+    public static final int PROD_PRICE = 2;
     // Other data.
 }
