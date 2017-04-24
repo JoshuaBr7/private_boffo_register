@@ -20,7 +20,15 @@ public class BoffoFireObject extends BoffoDbObject {
     public synchronized void removeListener(BoffoListenerInterface listener) {
         listeners.remove(listener);
     }
-
+    
+    public synchronized void removeAllListeners() {
+        listeners.clear();
+    }
+    
+    public synchronized void isListener(BoffoListenerInterface listener) {
+        listeners.contains(listener);
+    }
+    
     protected synchronized void fireEvent(BoffoEvent event) {
         // Clone the active listeners.
         Object[] tempList = this.listeners.toArray();
