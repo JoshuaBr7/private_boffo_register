@@ -20,6 +20,7 @@ import events.BoffoFireObject;
 import gui.BoffoRegisterGUI;
 import javafx.stage.Stage;
 import events.BoffoListenerInterface;
+import events.BoffoMessenger;
 import inventory.Inventory;
 import printer.Printer;
 import transaction.Transaction;
@@ -54,8 +55,11 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
         * within a given range.
         * Using literal ints until the event system is nailed down.
         */
-        if(_event.getMessage().getCode() == 0) {
+        if(_event.getEventCode() == BoffoMessenger.USER_NAME) {
             // Create new user object with data from login panel.
+            User user = new User();
+            user.getUsername();
+            user.getPass();
         }
         else if (_event.getMessage().getCode() == 1) {
             printReceipt();
