@@ -14,18 +14,19 @@ public class BoffoFireObject extends BoffoDbObject {
     }
     //Generic add and remove
     public synchronized void addListener(BoffoListenerInterface _listener) {
-        if(this.listeners.contains(_listener))
-        this.listeners.add(_listener);
+        if(!this.listeners.contains(_listener))
+            this.listeners.add(_listener);
     }
 
     public synchronized void removeListener(BoffoListenerInterface _listener) {
-        this.listeners.remove(_listener);
+        if (this.listeners.contains(_listener))
+            this.listeners.remove(_listener);
     }
-    
+
     public synchronized void removeAllListeners() {
         listeners.clear();
     }
-    
+
     protected synchronized void fireEvent(BoffoEvent _event) {
         // Clone the active listeners.
         Object[] tempList = this.listeners.toArray();

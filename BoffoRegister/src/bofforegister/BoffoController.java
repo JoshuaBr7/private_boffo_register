@@ -38,7 +38,7 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
 
     BoffoController(Stage _primaryStage) {
         this.gui = new BoffoRegisterGUI(_primaryStage);
-        //this.addListener(gui);
+        this.gui.addListener(this);
         // create user object
     }
 
@@ -55,21 +55,14 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
         * within a given range.
         * Using literal ints until the event system is nailed down.
         */
-        if(_event.getEventCode() == BoffoMessenger.USER_NAME) {
-            // Create new user object with data from login panel.
-            User user = new User();
-
-            user.getPass();
-        }
         if(_event.getEventCode() == EventCodes.LOGIN_REQUEST) {
-           // User.loginUser(_event);
-        }
-        else if (_event.getEventCode() == EventCodes.LOGIN_ACCEPTED) {
-            CURRENT_USER = new User(/*
-            _event.getMessageValue(MessageCodes.USER_NAME),
-            _event.getMessageValue(MessageCodes.USER_PASS)*/);
-            // this.addListener(CURRENT_USER);
-            this.gui.loadMainPanel();
+           //if(User.loginUser(_event)) {
+                CURRENT_USER = new User(/*
+                _event.getMessageValue(MessageCodes.USER_NAME),
+                _event.getMessageValue(MessageCodes.USER_PASS)*/);
+                // this.addListener(CURRENT_USER);
+                this.gui.loadMainPanel();
+            //}
         }
         else if (_event.getEventCode() == EventCodes.LOGOUT_REQUEST) {
             // TODO Call a static logout class?
@@ -105,11 +98,8 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
                 }
                 // Change to the admin GUI panel.
                 this.gui.loadAdminPanel();
-                break;
-
-            case EventCodes.USER_PANEL:
-                // Change to the User GUI panel.
-                // this.gui.loadUserPanel();
+                this.admin.addListener(this);
+                this.addListener(this.admin);
                 break;
 
             case EventCodes.INVENTORY_PANEL:
@@ -119,15 +109,19 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
                 }
                 // Change to the Inventory GUI panel.
                 this.gui.loadInventoryPanel();
+                this.addListener(this.inventory);
+                this.inventory.addListener(this);
                 break;
 
             case EventCodes.TRANSACTION_PANEL:
                 // Change to the Transaction GUI panel.
-                /*if(transaction == null) {
+                if(transaction == null) {
                     transaction = new Transaction();
-                }*/
+                }
                 // Change to the Transaction GUI panel.
                 this.gui.loadTransactionPanel();
+                this.addListener(this.transaction);
+                this.transaction.addListener(this);
                 break;
 
             default:
