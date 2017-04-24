@@ -6,7 +6,11 @@ import java.util.HashMap;
 
 public class BoffoMessenger {
     
-    private HashMap<String,String> messageTable = new HashMap<String, String>();
+    public static final int USER_NAME = 0;
+    public static final int USER_PASS = 1;
+    public static final int ACCEPTED = 2;
+    
+    private HashMap<Integer,String> messageTable = new HashMap<Integer, String>();
     
     public BoffoMessenger(String _messageText) {
         // Some code here to parse an incoming string.
@@ -16,11 +20,11 @@ public class BoffoMessenger {
         // Some code here to set the map.
     }
     
-    public String getValue(String _key) {
+    public String getValue(int _key) {
         return this.messageTable.get(_key);
     }
     
-    public void setValue(String _key, String _value) {
+    public void setValue(int _key, String _value) {
         this.messageTable.put(_key, _value);
     }
 
