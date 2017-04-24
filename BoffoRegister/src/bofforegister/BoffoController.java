@@ -56,13 +56,15 @@ public class BoffoController extends BoffoFireObject implements BoffoListenerInt
         * Using literal ints until the event system is nailed down.
         */
         if(_event.getEventCode() == EventCodes.LOGIN_REQUEST) {
-            // Create new user object with data from login panel.
-            User user = new User();
-            user.getUsername();
-            user.getPass();
+           // User.loginUser(_event); 
         }
         else if (_event.getEventCode() == EventCodes.LOGIN_ACCEPTED) {
             //
+            CURRENT_USER = new User(/* 
+            _event.getMessageValue(MessageCodes.USER_NAME),
+            _event.getMessageValue(MessageCodes.USER_PASS)*/);
+            
+                    
         }
         else if (_event.getEventCode() == EventCodes.LOGOUT_REQUEST) {
             //
